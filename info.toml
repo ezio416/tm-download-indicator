@@ -1,0 +1,10 @@
+[meta]
+name = "Download Indicator"
+author = "Nsgr"
+category = "Utilities"
+version = "1.3.5"
+siteid = 163
+
+[script]
+timeout = 0
+
