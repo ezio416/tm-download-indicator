@@ -1,3 +1,9 @@
+[Setting category="Overlay" name="Show/hide with game UI"]
+bool S_HideWithGame = true;
+
+[Setting category="Overlay" name="Show/hide with Openplanet UI"]
+bool S_HideWithOP = false;
+
 [Setting category="Overlay" name="Enable Locator mode"]
 bool Setting_OverlayLocator = false;
 
@@ -12,7 +18,7 @@ vec2 GetOverlayPosAdjusted() {
 vec2 Setting_OverlayBarSize = vec2(0.08, 0.025);
 
 vec2 GetOverlayBarSizeAbsolute() {
-    return vec2(Draw::GetWidth() * Setting_OverlayBarSize.x, Draw::GetHeight() * Setting_OverlayBarSize.y);
+    return vec2((Draw::GetWidth() * Setting_OverlayBarSize.x) / UI::GetScale(), (Draw::GetHeight() * Setting_OverlayBarSize.y) / UI::GetScale());
 }
 
 [Setting category="Overlay" name="Bar rounding" min=0 max=1]

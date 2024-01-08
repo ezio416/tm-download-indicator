@@ -9,6 +9,12 @@ void Main() {
 }
 
 void Render() {
+    if (
+        (S_HideWithGame && !UI::IsGameUIVisible()) ||
+        (S_HideWithOP && !UI::IsOverlayShown())
+    )
+        return;
+
     @g_fileTransfer = GetApp().Network.FileTransfer;
     if (g_fileTransfer is null) return;
     // Make sure every download is cached
@@ -18,9 +24,9 @@ void Render() {
     Overlay::Render();
 }
 
-void RenderInterface() {    
+void RenderInterface() {
     if (Setting_OverlayLocator) {
-        vec2 screenSize = vec2(Draw::GetWidth(), Draw::GetHeight());
+        vec2 screenSize = vec2(Draw::GetWidth() / UI::GetScale(), Draw::GetHeight() / UI::GetScale());
         Locator::Render("Example Progress bar", Setting_OverlayPos, GetOverlayBarSizeAbsolute());
         Setting_OverlayPos = Locator::GetPos();
         Setting_OverlayBarSize = Locator::GetSize() / screenSize;
@@ -82,7 +88,7 @@ void ManageDownloadCache() {
                     break;
                 }
             }
-            
+
             // Nod of cache ID has been found in TerminatedDownloads buffer
             if (found) {
                 i++;
